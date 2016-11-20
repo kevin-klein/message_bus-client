@@ -26,8 +26,12 @@ module MessageBus::Client::MessageHandler
     @payload = String.new
   end
 
-  def subscribe(channel, &callback)
-    @subscribed_channels[channel].callbacks << callback
+  def subscribe(channel, last_message_id=nil, &callback)
+    channel = @subscribed_channels[channel]
+    channel.callbacks << callback
+    if last_message_id != nil
+      channel.last_id = last_message_id
+    end
   end
 
   def unsubscribe

@@ -100,6 +100,7 @@ module MessageBus::Client::Connection
     headers['Content-Type'] = 'application/x-www-form-urlencoded'
     headers['X-SILENCE-LOGGER'] = 'true'
     headers['Dont-Chunk'] = 'true' unless self.class.long_polling
+    headers['X-access-token'] = @access_token
 
     headers
   end

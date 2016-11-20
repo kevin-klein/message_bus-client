@@ -11,8 +11,9 @@ class MessageBus::Client
   include MessageBus::Client::Connection
   include MessageBus::Client::MessageHandler
 
-  def initialize(base_url)
-    super
+  def initialize(base_url, access_token=nil)
+    super(base_url)
     @client_id = SecureRandom.uuid
+    @access_token = access_token
   end
 end
